@@ -8,11 +8,11 @@ interface User {
 }
 
 const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.headers.token;
+  const authHeader = req.headers.token as string;
 
   if (authHeader) {
     const token = authHeader.split(" ")[1]; // Bearer <token>
-    // console.log(token);
+    console.log(token);
 
     await jwt.verify(
       token,
@@ -22,7 +22,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
           // console.log(err);
           return res.status(403).json("Token is not valid!");
         }
-        const users = req.user;
+        const users = req.user as User;
 
         next();
       }

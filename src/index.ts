@@ -6,7 +6,9 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import bodyParser from "body-parser";
 import path from "path";
+
 import connectDb from "./db/mongo";
+import authRouter from "./routes/auth.routes";
 
 dotenv.config();
 
@@ -26,6 +28,9 @@ app.use(cookieParser());
 app.use(express.json({ limit: "50mb" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//all routes
+app.use("/api/auth", authRouter);
 
 const startServer = async () => {
   await connectDb();
