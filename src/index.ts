@@ -7,7 +7,7 @@ import * as dotenv from "dotenv";
 import bodyParser from "body-parser";
 import path from "path";
 
-import connectDb from "./db/mongo";
+import { connectDb, mongooseDisconnect } from "./db/mongo";
 import authRouter from "./routes/auth.routes";
 import userRouter from "./routes/user.routes";
 

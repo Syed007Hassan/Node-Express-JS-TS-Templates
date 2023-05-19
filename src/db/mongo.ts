@@ -6,8 +6,13 @@ dotenv.config();
 mongoose.set("strictQuery", false);
 
 const connectDb = async () => {
-  await mongoose.connect(process.env.MONGOURL);
+  const connection = process.env.MONGOURL as string;
+  await mongoose.connect(connection);
   console.log("MongoDB Server is up and running");
 };
 
-export default connectDb;
+const mongooseDisconnect = async () => {
+  await mongoose.disconnect();
+};
+
+export { connectDb, mongooseDisconnect };
