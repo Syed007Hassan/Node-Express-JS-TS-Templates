@@ -9,6 +9,7 @@ import path from "path";
 
 import connectDb from "./db/mongo";
 import authRouter from "./routes/auth.routes";
+import userRouter from "./routes/user.routes";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //all routes
 app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
 
 const startServer = async () => {
   await connectDb();

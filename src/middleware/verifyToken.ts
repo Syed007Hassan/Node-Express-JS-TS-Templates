@@ -2,17 +2,27 @@ import jwt, { VerifyErrors } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 interface User {
+  _id: string;
   username: string;
   password: string;
   email: string;
+  isAdmin: boolean;
 }
 
-const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
+interface ExtendedRequest extends Request {
+  user: User | undefined;
+}
+
+const verifyToken = async (
+  req: ExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const authHeader = req.headers.token as string;
 
   if (authHeader) {
     const token = authHeader.split(" ")[1]; // Bearer <token>
-    console.log(token);
+    // console.log(token);
 
     await jwt.verify(
       token,
@@ -22,7 +32,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
           // console.log(err);
           return res.status(403).json("Token is not valid!");
         }
-        const users = req.user as User;
+        req.user = user;
 
         next();
       }
