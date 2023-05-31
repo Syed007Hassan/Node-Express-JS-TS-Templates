@@ -24,13 +24,13 @@ npm i
 ```
 ## Create a .env file 
 ```
-PORT=
+PORT=5000
 MONGOURL=
-SECRET_KEY_FOR_CRYPTOJS=
+SECRET_KEY_FOR_CRYPTOJS=<can_be_any_string>
 ```
 ## Start using npm script
 ```
-npm run start
+npm run start / nodemon
 ```
 ## Start using container
 ```
