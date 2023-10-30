@@ -10,6 +10,7 @@ import path from "path";
 import { connectDb, mongooseDisconnect } from "./db/mongo";
 import authRouter from "./routes/auth.routes";
 import userRouter from "./routes/user.routes";
+import gptRouter from "./routes/gpt.routes";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //all routes
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
+app.use("/api", gptRouter);
 
 const startServer = async () => {
   await connectDb();
