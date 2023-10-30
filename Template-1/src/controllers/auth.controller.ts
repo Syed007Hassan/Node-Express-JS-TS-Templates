@@ -7,15 +7,13 @@ import User from "../models/User";
 const registerUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
   // console.log({ username, email, password });
+  const secrect = process.env.SECRET_KEY_FOR_CRYPTOJS?.toString();
   try {
     //register the user
     const user = await User.create({
       username,
       email,
-      password: CryptoJS.AES.encrypt(
-        password,
-        process.env.SECRET_KEY_FOR_CRYPTOJS
-      ).toString(),
+      password: CryptoJS.AES.encrypt(password, secrect as string).toString(),
     });
 
     res.status(201).json({
@@ -34,15 +32,13 @@ const registerUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
+    const secrect = process.env.SECRET_KEY_FOR_CRYPTOJS?.toString();
     //find the user by email and then match password
     const user = await User.findOne({ email: email });
 
     //if user is found then compare the password
     if (user) {
-      const bytes = CryptoJS.AES.decrypt(
-        user.password,
-        process.env.SECRET_KEY_FOR_CRYPTOJS
-      );
+      const bytes = CryptoJS.AES.decrypt(user.password, secrect as string);
       const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
       if (originalPassword !== password) {
@@ -62,7 +58,7 @@ const loginUser = async (req: Request, res: Response) => {
       //creating a jwt token for the user that has been found
       const accessToken = jwt.sign(
         { id: user._id, isAdmin: user.isAdmin },
-        process.env.SECRET_KEY_FOR_CRYPTOJS,
+        process.env.SECRET_KEY_FOR_CRYPTOJS as string,
         { expiresIn: "30d" }
       );
 
