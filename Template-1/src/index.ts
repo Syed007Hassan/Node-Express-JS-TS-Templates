@@ -1,10 +1,10 @@
-import express from "express";
+import * as express from "express";
 import http from "http";
-import cookieParser from "cookie-parser";
-import compression from "compression";
-import cors from "cors";
+import * as cookieParser from "cookie-parser";
+import * as compression from "compression";
+import * as cors from "cors";
 import * as dotenv from "dotenv";
-import bodyParser from "body-parser";
+import * as bodyParser from "body-parser";
 import path from "path";
 
 import { connectDb, mongooseDisconnect } from "./db/mongo";
@@ -39,7 +39,7 @@ app.use("/api", gptRouter);
 const startServer = async () => {
   await connectDb();
   app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+    console.log(`Server is listening on port! ${port}`);
   });
 };
 
