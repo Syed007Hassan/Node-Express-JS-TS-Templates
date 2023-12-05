@@ -1,10 +1,16 @@
-version: "3.4"
+version: "3"
 
 services:
-  api:
+  nodeapp:
+    container_name: nodeapp
+    image: nodeapp
     build:
+      dockerfile: Dockerfile
       context: .
-      target: production
-
     ports:
       - 5000:5000
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
