@@ -1,7 +1,7 @@
 # Node-Express-Mongo-REST-Template
 Template repository for an MVC-based REST API using MongoDB, Node.js, TypeScript, and containerization.
 
-## What's included in [Template-1](https://github.com/Syed007Hassan/REST-Typescript-Template/tree/main/Template-1)
+## [Template-1](https://github.com/Syed007Hassan/REST-Typescript-Template/tree/main/Template-1)
 - **Environment, Typescript, Nodemon setup**
 - **MongoDB & Mongoose connection, Database creation**
 - **Controllers creation**
@@ -37,8 +37,11 @@ npm run start / nodemon
 docker-compose up
 ```
 
-What's included in [Template-2](https://github.com/Syed007Hassan/REST-Typescript-Template/tree/main/Template-2)
+## [Template-2](https://github.com/Syed007Hassan/REST-Typescript-Template/tree/main/Template-2)
 - **Same as Template-1 but with Custom Validation and Exception Handling**
+
+## [Template-3](https://github.com/a7urag/node-express-mysql-typescript-api-boilerplate)
+- Boilerplate with MySQL and TypeORM 
 
 **Leave a star to repo if you find it useful** 🙂
 
